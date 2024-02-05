@@ -6,8 +6,8 @@ const login = require('../../controller/user/login-user/login')
 
 const router = express.Router()
 
-router.post('/register',getConnection,registerUser)
-router.post('/verify',getConnection,verifyUser)
-router.post('/login',getConnection,login)
+router.post('/register',registerUser)
+router.post('/verify',verifyUser)
+router.post('/login',login)
 
 module.exports = router

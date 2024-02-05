@@ -1,17 +1,28 @@
 const express = require('express');
-const mongoose = require('mongoose');
 require('dotenv').config();
 const userRoute = require('./route/user/user')
+const mongoose = require('mongoose')
+
 const cors = require('cors')
 
 const app = express();
+const getConnection = ()=>{
+try {
+  mongoose.connect(process.env.MONGO_URL)
+ mongoose.connection.once('connected',()=>console.log('db is connected'))
+} catch (error) {
+}
+  
 
-// Connect to MongoDB Atlas
+}
+
+getConnection()
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(cors())
-
+// app.use(getConnection)
+//user routes here
 app.use('/user',userRoute)
 
 
@@ -24,6 +35,12 @@ app.use((error,req,res,next)=>{
     const errorMesssage= error.message ||'server error'
     res.status(statusCode).json({message:errorMesssage})
 })
+
+
+
+
+
+
 
 const PORT = process.env.PORT || 3000; // Set default port to 3000 if PORT is not specified in environment
 app.listen(PORT, () => {

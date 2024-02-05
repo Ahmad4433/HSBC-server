@@ -34,9 +34,18 @@ const loginser = async (req, res, next) => {
       error.statusCode = 400;
       throw error;
     }
-    const data = { Id: isEmailExist._id, email: email };
+    const data = { Id: isEmailExist._id, email: email,role:isEmailExist.role };
 
     const { accessToken, refreshToken } = await generateToken(data);
+
+   
+    
+    
+    
+    
+    
+
+
 
     res.status(200).json({
       message: "login successfully",
