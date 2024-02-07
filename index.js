@@ -17,7 +17,7 @@ const options=[
 ]
 
 
-app.use(options)
+
 const getConnection = ()=>{
 try {
   mongoose.connect(process.env.MONGO_URL)
@@ -31,8 +31,25 @@ try {
 
 getConnection()
 
+
+
+
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+
+// Middleware to allow CORS
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+      res.sendStatus(200);
+  } else {
+      next();
+  }
+});
+app.use(options)
 
 app.get('/',(req,res,next)=>{
   res.send('server is running')
