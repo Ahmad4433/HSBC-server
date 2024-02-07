@@ -8,7 +8,16 @@ const mongoose = require('mongoose')
 
 
 const app = express();
-app.use(cors())
+const options=[
+  cors({
+    origin:'*',
+    methods:'*',
+    allowedHeaders:['Content-Type','Authorization']
+  })
+]
+
+
+app.use(options)
 const getConnection = ()=>{
 try {
   mongoose.connect(process.env.MONGO_URL)
