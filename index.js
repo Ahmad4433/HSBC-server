@@ -1,16 +1,20 @@
 const express = require('express');
 require('dotenv').config();
+const cors = require('cors')
+
 const userRoute = require('./route/user/user')
 const mongoose = require('mongoose')
 
-const cors = require('cors')
+
 
 const app = express();
+app.use(cors())
 const getConnection = ()=>{
 try {
   mongoose.connect(process.env.MONGO_URL)
  mongoose.connection.once('connected',()=>console.log('db is connected'))
 } catch (error) {
+  console.log(error)
 }
   
 
@@ -20,11 +24,6 @@ getConnection()
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-app.use(cors({
-  origin: '*', // Allow requests from any origin
-  methods: ['GET', 'POST'], // Allow only specified HTTP methods
-  allowedHeaders: ['Content-Type'], // Allow only specified headers
-}));
 
 app.get('/',(req,res,next)=>{
   res.send('server is running')
