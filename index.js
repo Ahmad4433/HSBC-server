@@ -20,7 +20,11 @@ getConnection()
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-app.use(cors())
+app.use(cors({
+  origin: '*', // Allow requests from any origin
+  methods: ['GET', 'POST'], // Allow only specified HTTP methods
+  allowedHeaders: ['Content-Type'], // Allow only specified headers
+}));
 
 app.get('/',(req,res,next)=>{
   res.send('server is running')
