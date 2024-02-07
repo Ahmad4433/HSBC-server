@@ -49,7 +49,7 @@ app.use((req, res, next) => {
       next();
   }
 });
-app.use(options)
+app.use(cors())
 
 app.get('/',(req,res,next)=>{
   res.send('server is running')
