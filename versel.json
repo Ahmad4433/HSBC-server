@@ -1,0 +1,18 @@
+{
+
+    "version":"2",
+    "builds":[
+
+       {
+        "src":"app.js",
+        "use":"@versel/node"
+       }
+    ],
+    "rootes":[
+
+        {
+            "src":"/(.*)",
+            "dest":"app.js"
+        }
+    ]
+}
