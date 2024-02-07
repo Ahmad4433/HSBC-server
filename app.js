@@ -21,6 +21,10 @@ getConnection()
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(cors())
+
+app.get('/',(req,res,next)=>{
+  res.send('server is running')
+})
 // app.use(getConnection)
 //user routes here
 app.use('/user',userRoute)
