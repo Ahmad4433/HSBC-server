@@ -19,13 +19,22 @@ getConnection();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors())
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 
 // Use cors middleware to handle CORS
-app.use(cors({
-  origin: '*', // Allow requests from any origin, you can restrict it to specific origins if needed
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allow the specified HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow the specified headers
-}));
+// app.use(cors({
+//   origin: '*', // Allow requests from any origin, you can restrict it to specific origins if needed
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allow the specified HTTP methods
+//   allowedHeaders: ['Content-Type', 'Authorization'], // Allow the specified headers
+// }));
 
 app.get('/', (req, res, next) => {
   res.send('server is running');
