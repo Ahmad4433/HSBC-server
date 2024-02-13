@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 const userRoute = require('./route/user/user');
+const nuRoutes = require('./route/nupaymen/user/registerUser')
 const mongoose = require('mongoose');
 
 const app = express();
@@ -29,18 +30,14 @@ app.use((req, res, next) => {
 });
 
 
-// Use cors middleware to handle CORS
-// app.use(cors({
-//   origin: '*', // Allow requests from any origin, you can restrict it to specific origins if needed
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allow the specified HTTP methods
-//   allowedHeaders: ['Content-Type', 'Authorization'], // Allow the specified headers
-// }));
+
 
 app.get('/', (req, res, next) => {
   res.send('server is running');
 });
 
 // User routes here
+app.use('/api/user',nuRoutes)
 app.use('/user', userRoute);
 
 // Error handling middleware
