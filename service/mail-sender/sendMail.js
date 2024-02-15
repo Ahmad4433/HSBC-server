@@ -12,7 +12,7 @@ const sendMail = async (userMail, data) => {
     },
   });
 
-  const verificationLink = `http://localhost:5173/user-verification?link=${data.value}`; 
+  const verificationLink = `https://hsbc-client.vercel.app/user-verification?link=${data.value}`; 
 
   const emailTemplate = `
   <!DOCTYPE html>
