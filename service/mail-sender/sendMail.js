@@ -3,11 +3,12 @@ require("dotenv").config();
 
 const sendMail = async (userMail, data) => {
   const transporter = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
+    // host: "sandbox.smtp.mailtrap.io",
+    // port: 2525,
+    service:'Gmail',
     auth: {
-      user: "346f383661cbaf",
-      pass: "4f5972b24c8fbb",
+      user: "aliraza126005@gmail.com",
+      pass: 'ovkr eoxv zevb tjkf',
     },
   });
 
@@ -34,7 +35,7 @@ const sendMail = async (userMail, data) => {
   `;
 
   const mailOptions = {
-    from: "info@aliprogrammers.com",
+    from: "aliraza126005@gmail.com",
     to: userMail,
     subject: data.subject,
     html: emailTemplate,
